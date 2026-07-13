@@ -1,5 +1,17 @@
 # Triage Labels
 
+## External knowledge inbox
+
+Before triaging non-trivial issues, consult d:/inbox for relevant user-provided context.
+Use that context when deciding whether labels indicate missing information or readiness.
+
+## Autopilot execution cadence
+
+When executing a todo list in autopilot mode:
+- Pause for about 10 seconds between todo items to allow user interruption.
+- If the user interrupts, stop and re-align before continuing.
+- If no interruption occurs, continue automatically with the next todo item.
+
 The skills speak in terms of five canonical triage roles. This file maps those roles to the actual label strings used in this repo's issue tracker.
 
 | Label in mattpocock/skills | Label in our tracker | Meaning                                  |

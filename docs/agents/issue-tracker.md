@@ -2,6 +2,18 @@
 
 Issues and PRDs for this repo live as GitHub issues. Use the gh CLI for all operations.
 
+## External knowledge inbox
+
+Before drafting, triaging, or updating issues for non-trivial work, consult d:/inbox for relevant user-provided context.
+Use that context to improve issue accuracy and completeness.
+
+## Autopilot execution cadence
+
+When executing a todo list in autopilot mode:
+- Pause for about 10 seconds between todo items to allow user interruption.
+- If the user interrupts, stop and re-align before continuing.
+- If no interruption occurs, continue automatically with the next todo item.
+
 ## Conventions
 
 - **Create an issue**: gh issue create --title "..." --body "...". Use a heredoc for multi-line bodies.

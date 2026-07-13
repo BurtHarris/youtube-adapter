@@ -2,6 +2,18 @@
 
 How the engineering skills should consume this repo's domain documentation when exploring the codebase.
 
+## External knowledge inbox
+
+Before exploring non-trivial topics, consult d:/inbox for relevant user-provided knowledge.
+Use applicable inbox material alongside the repo domain docs in this file.
+
+## Autopilot execution cadence
+
+When executing a todo list in autopilot mode:
+- Pause for about 10 seconds between todo items to allow user interruption.
+- If the user interrupts, stop and re-align before continuing.
+- If no interruption occurs, continue automatically with the next todo item.
+
 ## Before exploring, read these
 
 - **CONTEXT.md** at the repo root, or
