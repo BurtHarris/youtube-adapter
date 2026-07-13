@@ -11,3 +11,4 @@ When executing a todo list in autopilot mode:
 - Pause for about 10 seconds between todo items to allow user interruption.
 - If the user interrupts, stop and re-align before continuing.
 - If no interruption occurs, continue automatically with the next todo item.
+- When a ticket is resolved and closed, create a checkpoint commit and compact context before retrieving the next ticket.
