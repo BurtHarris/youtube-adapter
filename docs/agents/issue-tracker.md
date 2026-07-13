@@ -10,6 +10,7 @@ Use that context to improve issue accuracy and completeness.
 ## Autopilot execution cadence
 
 When executing a todo list in autopilot mode:
+
 - Pause for about 10 seconds between todo items to allow user interruption.
 - If the user interrupts, stop and re-align before continuing.
 - If no interruption occurs, continue automatically with the next todo item.
@@ -17,13 +18,19 @@ When executing a todo list in autopilot mode:
 ## Conventions
 
 - **Create an issue**: gh issue create --title "..." --body "...". Use a heredoc for multi-line bodies.
-- **Read an issue**: gh issue view <number> --comments, filtering comments by jq and also fetching labels.
+- **Read an issue**: gh issue view [number] --comments, filtering comments by jq and also fetching labels.
 - **List issues**: gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]' with appropriate --label and --state filters.
-- **Comment on an issue**: gh issue comment <number> --body "..."
-- **Apply / remove labels**: gh issue edit <number> --add-label "..." / --remove-label "..."
-- **Close**: gh issue close <number> --comment "..."
+- **Comment on an issue**: gh issue comment [number] --body "..."
+- **Apply / remove labels**: gh issue edit [number] --add-label "..." / --remove-label "..."
+- **Close**: gh issue close [number] --comment "..."
 
 Infer the repo from git remote -v - gh does this automatically when run inside a clone.
+
+## Pull requests as a triage surface
+
+PRs as a request surface: no.
+
+If this repo later decides to triage external PRs like issues, update this file and use the `gh pr` equivalents for read, list, comment, label, and close operations.
 
 ## When a skill says "publish to the issue tracker"
 
@@ -31,4 +38,4 @@ Create a GitHub issue.
 
 ## When a skill says "fetch the relevant ticket"
 
-Run gh issue view <number> --comments.
+Run gh issue view [number] --comments.

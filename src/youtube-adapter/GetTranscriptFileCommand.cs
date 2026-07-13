@@ -2,9 +2,9 @@ using System.Management.Automation;
 
 namespace YoutubeAdapter;
 
-[Cmdlet(VerbsCommon.Get, "CopilotTranscriptFile")]
+[Cmdlet(VerbsCommon.Get, "TranscriptFile")]
 [OutputType(typeof(CopilotTranscriptFileRecord))]
-public sealed class GetCopilotTranscriptFileCommand : PSCmdlet
+public sealed class GetTranscriptFileCommand : PSCmdlet
 {
     [Parameter]
     [ValidateNotNullOrEmpty]

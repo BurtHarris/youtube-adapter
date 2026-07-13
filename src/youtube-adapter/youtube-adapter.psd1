@@ -72,7 +72,7 @@ PowerShellVersion = '7.4'
 FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = 'Get-CopilotSessionResource','Get-CopilotToolExecution','Get-CopilotTranscriptEvent','Get-CopilotTranscriptFile','Get-Sample'
+CmdletsToExport = 'Get-SessionResource','Get-ToolExecution','Get-TranscriptEvent','Get-TranscriptFile','Get-Sample'
 
 # Variables to export from this module
 # VariablesToExport = @()

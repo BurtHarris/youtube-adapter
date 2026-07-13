@@ -2,9 +2,9 @@ using System.Management.Automation;
 
 namespace YoutubeAdapter;
 
-[Cmdlet(VerbsCommon.Get, "CopilotSessionResource")]
+[Cmdlet(VerbsCommon.Get, "SessionResource")]
 [OutputType(typeof(CopilotSessionResourceRecord))]
-public sealed class GetCopilotSessionResourceCommand : PSCmdlet
+public sealed class GetSessionResourceCommand : PSCmdlet
 {
     [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     [ValidateNotNullOrEmpty]

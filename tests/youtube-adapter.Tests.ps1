@@ -30,10 +30,10 @@ Describe 'Module manifest' {
         $module = Get-Module $script:ModuleName
         $module.ExportedFunctions.Keys | Should -BeNullOrEmpty
         $module.ExportedCmdlets.Keys | Sort-Object | Should -Be @(
-            'Get-CopilotSessionResource',
-            'Get-CopilotToolExecution',
-            'Get-CopilotTranscriptEvent',
-            'Get-CopilotTranscriptFile',
+            'Get-SessionResource',
+            'Get-ToolExecution',
+            'Get-TranscriptEvent',
+            'Get-TranscriptFile',
             'Get-Sample'
         )
     }

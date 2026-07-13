@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace YoutubeAdapter;
 
-[Cmdlet(VerbsCommon.Get, "CopilotToolExecution")]
+[Cmdlet(VerbsCommon.Get, "ToolExecution")]
 [OutputType(typeof(CopilotToolExecutionRecord))]
-public sealed class GetCopilotToolExecutionCommand : PSCmdlet
+public sealed class GetToolExecutionCommand : PSCmdlet
 {
     [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
     [Alias("FullName")]
