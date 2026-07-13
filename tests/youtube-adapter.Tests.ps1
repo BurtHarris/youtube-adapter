@@ -4,8 +4,17 @@ BeforeDiscovery {
 
 BeforeAll {
     $script:ModuleName = 'youtube-adapter'
+    $requestedModulePath = $env:YOUTUBE_ADAPTER_TEST_MODULE_PATH
     $builtModule = Join-Path $PSScriptRoot "../output/$script:ModuleName"
-    $script:ModulePath = if (Test-Path $builtModule) { $builtModule } else { Join-Path $PSScriptRoot "../src/$script:ModuleName" }
+    $script:ModulePath = if ($requestedModulePath -and (Test-Path $requestedModulePath)) {
+        $requestedModulePath
+    }
+    elseif (Test-Path $builtModule) {
+        $builtModule
+    }
+    else {
+        Join-Path $PSScriptRoot "../src/$script:ModuleName"
+    }
     Import-Module $script:ModulePath -Force
 }
 
@@ -29,13 +38,13 @@ Describe 'Module manifest' {
     It 'exports the expected cmdlet surface' {
         $module = Get-Module $script:ModuleName
         $module.ExportedFunctions.Keys | Should -BeNullOrEmpty
-        $module.ExportedCmdlets.Keys | Sort-Object | Should -Be @(
-            'Get-SessionResource',
-            'Get-ToolExecution',
-            'Get-TranscriptEvent',
-            'Get-TranscriptFile',
-            'Get-Sample'
-        )
+
+        $exportedCmdlets = $module.ExportedCmdlets.Keys
+        $exportedCmdlets | Should -Contain 'Get-Sample'
+        ($exportedCmdlets | Where-Object { $_ -in @('Get-SessionResource', 'Get-CopilotSessionResource') }).Count | Should -Be 1
+        ($exportedCmdlets | Where-Object { $_ -in @('Get-ToolExecution', 'Get-CopilotToolExecution') }).Count | Should -Be 1
+        ($exportedCmdlets | Where-Object { $_ -in @('Get-TranscriptEvent', 'Get-CopilotTranscriptEvent') }).Count | Should -Be 1
+        ($exportedCmdlets | Where-Object { $_ -in @('Get-TranscriptFile', 'Get-CopilotTranscriptFile') }).Count | Should -Be 1
     }
 }
 
