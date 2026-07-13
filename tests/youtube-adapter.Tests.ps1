@@ -29,7 +29,13 @@ Describe 'Module manifest' {
     It 'exports the expected cmdlet surface' {
         $module = Get-Module $script:ModuleName
         $module.ExportedFunctions.Keys | Should -BeNullOrEmpty
-        $module.ExportedCmdlets.Keys | Sort-Object | Should -Be @('Get-CopilotTranscriptEvent', 'Get-Sample')
+        $module.ExportedCmdlets.Keys | Sort-Object | Should -Be @(
+            'Get-CopilotSessionResource',
+            'Get-CopilotToolExecution',
+            'Get-CopilotTranscriptEvent',
+            'Get-CopilotTranscriptFile',
+            'Get-Sample'
+        )
     }
 }
 
