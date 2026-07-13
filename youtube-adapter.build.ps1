@@ -94,8 +94,9 @@ task Test {
     Copy-Item -Path (Join-Path $Script:SourcePath "$ModuleName.psd1") -Destination $testModulePath
     Copy-Item -Path (Join-Path $Script:SourcePath "$ModuleName.psm1") -Destination $testModulePath
 
+    $testModuleManifestPath = Join-Path $testModulePath "$ModuleName.psd1"
     $previousModulePath = $env:YOUTUBE_ADAPTER_TEST_MODULE_PATH
-    $env:YOUTUBE_ADAPTER_TEST_MODULE_PATH = $testModulePath
+    $env:YOUTUBE_ADAPTER_TEST_MODULE_PATH = $testModuleManifestPath
 
     $configuration = New-PesterConfiguration
     $configuration.Run.Path = Join-Path $BuildRoot 'tests'

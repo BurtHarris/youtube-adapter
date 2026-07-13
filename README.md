@@ -46,6 +46,40 @@ A GitHub template repository for authoring high-quality PowerShell modules in VS
 
 The same tasks are available in VS Code via **Terminal → Run Task**.
 
+## Terminal test environment
+
+To set up a plain PowerShell terminal for local module testing, dot-source the repo bootstrap script:
+
+```powershell
+. ./Enter-DevShell.ps1
+```
+
+This script:
+
+- Installs build/test dependencies (`InvokeBuild`, `Pester`, `PSScriptAnalyzer`) if needed
+- Builds the module when no built output is available
+- Imports the latest built module for the current terminal session
+- Sets `YOUTUBE_ADAPTER_TEST_MODULE_PATH` so test runs use the intended module path
+- Exposes convenience commands:
+   - `Invoke-ProjectBuild`
+   - `Invoke-ProjectAnalyze`
+   - `Invoke-ProjectTests`
+   - `Import-ProjectModule`
+
+`Invoke-ProjectTests` runs tests against an isolated build path, so avoid importing the module before running tests in the same session.
+
+Quick start after bootstrapping:
+
+```powershell
+Invoke-ProjectTests
+```
+
+To load the configured module path into your terminal session after testing:
+
+```powershell
+Import-ProjectModule
+```
+
 ## Publishing
 
 Create a GitHub release and the `publish` workflow pushes the built module to the [PowerShell Gallery](https://www.powershellgallery.com/). Requires a `PSGALLERY_API_KEY` repository secret.

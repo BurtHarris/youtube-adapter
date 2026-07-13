@@ -6,7 +6,7 @@ BeforeAll {
     $script:ModuleName = 'youtube-adapter'
     $requestedModulePath = $env:YOUTUBE_ADAPTER_TEST_MODULE_PATH
     $builtModule = Join-Path $PSScriptRoot "../output/$script:ModuleName"
-    $script:ModulePath = if ($requestedModulePath -and (Test-Path $requestedModulePath)) {
+    $selectedPath = if ($requestedModulePath -and (Test-Path $requestedModulePath)) {
         $requestedModulePath
     }
     elseif (Test-Path $builtModule) {
@@ -15,7 +15,17 @@ BeforeAll {
     else {
         Join-Path $PSScriptRoot "../src/$script:ModuleName"
     }
-    Import-Module $script:ModulePath -Force
+
+    $isManifestPath = [System.IO.Path]::GetExtension($selectedPath) -eq '.psd1'
+    $script:ModuleImportPath = $selectedPath
+    $script:ModulePath = if ($isManifestPath) {
+        Split-Path -Parent $selectedPath
+    }
+    else {
+        $selectedPath
+    }
+
+    Import-Module $script:ModuleImportPath -Force
 }
 
 Describe 'Module manifest' {
