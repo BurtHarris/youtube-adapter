@@ -1,0 +1,23 @@
+name: Publish to PowerShell Gallery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build and test
+        shell: pwsh
+        run: ./build.ps1 -Task Test
+
+      - name: Publish
+        shell: pwsh
+        env:
+          PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
+        run: |
+          $modulePath = Get-ChildItem -Path ./output -Directory | Select-Object -First 1
+          Publish-Module -Path $modulePath.FullName -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose

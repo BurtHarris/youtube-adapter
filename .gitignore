@@ -1,0 +1,11 @@
+# Build output
+output/
+testResults/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# PowerShell
+*.ps1xml.bak

@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${workspaceFolder}/build.ps1", "-Task", "Build"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${workspaceFolder}/build.ps1", "-Task", "Test"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Analyze",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${workspaceFolder}/build.ps1", "-Task", "Analyze"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Docs",
+            "type": "shell",
+            "command": "pwsh",
+            "args": ["-NoProfile", "-File", "${workspaceFolder}/build.ps1", "-Task", "Docs"],
+            "problemMatcher": []
+        }
+    ]
+}
