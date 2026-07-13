@@ -13,23 +13,17 @@ task Clean {
     remove (Join-Path $BuildRoot 'output')
 }
 
-# Assemble Public/Private functions into a single .psm1 for distribution.
+# Build the compiled cmdlet assembly and package it with the module manifest.
 task Build Clean, {
     New-Item -Path $Script:OutputPath -ItemType Directory -Force | Out-Null
 
-    $publicFunctions = @(Get-ChildItem -Path (Join-Path $Script:SourcePath 'Public/*.ps1') -ErrorAction SilentlyContinue)
-    $privateFunctions = @(Get-ChildItem -Path (Join-Path $Script:SourcePath 'Private/*.ps1') -ErrorAction SilentlyContinue)
-
-    $builder = [System.Text.StringBuilder]::new()
-    foreach ($file in @($privateFunctions + $publicFunctions)) {
-        [void]$builder.AppendLine((Get-Content -Path $file.FullName -Raw))
+    dotnet build (Join-Path $Script:SourcePath "$ModuleName.csproj") --configuration Release --output $Script:OutputPath
+    if ($LASTEXITCODE -ne 0) {
+        throw 'dotnet build failed.'
     }
-    [void]$builder.AppendLine("Export-ModuleMember -Function @('$($publicFunctions.BaseName -join "', '")')")
-
-    Set-Content -Path (Join-Path $Script:OutputPath "$ModuleName.psm1") -Value $builder.ToString() -Encoding UTF8
 
     Copy-Item -Path (Join-Path $Script:SourcePath "$ModuleName.psd1") -Destination $Script:OutputPath
-    Update-ModuleManifest -Path (Join-Path $Script:OutputPath "$ModuleName.psd1") -FunctionsToExport $publicFunctions.BaseName
+    Copy-Item -Path (Join-Path $Script:SourcePath "$ModuleName.psm1") -Destination $Script:OutputPath
 
     Write-Build Green "Built $ModuleName -> $Script:OutputPath"
 }

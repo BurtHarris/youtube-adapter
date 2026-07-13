@@ -26,10 +26,10 @@ Describe 'Module manifest' {
         $script:Manifest.Description | Should -Not -BeNullOrEmpty
     }
 
-    It 'exports only public functions' {
-        $publicFiles = Get-ChildItem -Path (Join-Path $PSScriptRoot "../src/$script:ModuleName/Public/*.ps1")
-        $exported = (Get-Module $script:ModuleName).ExportedFunctions.Keys
-        $exported | Sort-Object | Should -Be ($publicFiles.BaseName | Sort-Object)
+    It 'exports the expected cmdlet surface' {
+        $module = Get-Module $script:ModuleName
+        $module.ExportedFunctions.Keys | Should -BeNullOrEmpty
+        $module.ExportedCmdlets.Keys | Sort-Object | Should -Be @('Get-CopilotTranscriptEvent', 'Get-Sample')
     }
 }
 

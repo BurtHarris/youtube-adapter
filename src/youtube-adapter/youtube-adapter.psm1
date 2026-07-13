@@ -1,10 +1,15 @@
-# Development loader: dot-sources every function so the module is usable
-# straight from src/. The build assembles these files into a single .psm1.
-$public = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Public/*.ps1') -ErrorAction SilentlyContinue)
-$private = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private/*.ps1') -ErrorAction SilentlyContinue)
+# Thin script root so the manifest can remain stable while the implementation
+# moves to a compiled cmdlet assembly.
+$assemblyCandidates = @(
+    (Join-Path $PSScriptRoot 'youtube-adapter.dll'),
+    (Join-Path $PSScriptRoot 'bin/Release/net8.0/youtube-adapter.dll'),
+    (Join-Path $PSScriptRoot 'bin/Debug/net8.0/youtube-adapter.dll')
+)
 
-foreach ($file in @($private + $public)) {
-    . $file.FullName
+$assemblyPath = $assemblyCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+if (-not $assemblyPath) {
+    throw "Could not find youtube-adapter.dll. Build the C# project first."
 }
 
-Export-ModuleMember -Function $public.BaseName
+Import-Module -Name $assemblyPath

@@ -15,7 +15,7 @@ RootModule = 'youtube-adapter.psm1'
 ModuleVersion = '0.1.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Core')
 
 # ID used to uniquely identify this module
 GUID = 'ccc3d2a1-9835-4710-a77a-ad5285950a1f'
@@ -30,10 +30,10 @@ CompanyName = ''
 Copyright = '(c) Burt Harris. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'PowerShell module for YouTube adapter workflows.'
+Description = 'PowerShell module for C#-backed cmdlets and deterministic helper experiments.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.1'
+PowerShellVersion = '7.4'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -69,10 +69,10 @@ PowerShellVersion = '5.1'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-Sample'
+FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @()
+CmdletsToExport = 'Get-CopilotTranscriptEvent','Get-Sample'
 
 # Variables to export from this module
 # VariablesToExport = @()
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'template','sample'
+        Tags = 'template','sample','binary-module','csharp','copilot','transcripts'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/BurtHarris/youtube-adapter/blob/master/LICENSE'
