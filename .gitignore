@@ -2,6 +2,30 @@
 output/
 testResults/
 
+# If you choose to keep signed/released packages in-repo,
+# store only package artifacts under output/packages.
+!output/packages/
+output/packages/**
+!output/packages/**/*.nupkg
+!output/packages/**/*.snupkg
+!output/packages/**/*.sha256
+!output/packages/**/*.sig
+
+# .NET / MSBuild artifacts
+**/bin/
+**/obj/
+*.user
+*.suo
+*.cache
+*.nupkg
+*.snupkg
+
+# Test and coverage artifacts
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
 # OS / editor noise
 .DS_Store
 Thumbs.db
