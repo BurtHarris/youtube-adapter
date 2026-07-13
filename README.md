@@ -1,6 +1,6 @@
 # PSModuleTemplate
 
-[![CI](https://github.com/BurtHarris/PSModuleTemplate/actions/workflows/ci.yml/badge.svg)](https://github.com/BurtHarris/PSModuleTemplate/actions/workflows/ci.yml)
+[![CI](https://github.com/BurtHarris/youtube-adapter/actions/workflows/ci.yml/badge.svg)](https://github.com/BurtHarris/youtube-adapter/actions/workflows/ci.yml)
 
 A GitHub template repository for authoring high-quality PowerShell modules in VS Code.
 

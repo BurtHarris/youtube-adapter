@@ -26,4 +26,4 @@ foreach ($dependency in $dependencies) {
     }
 }
 
-Invoke-Build -Task $Task -File (Join-Path $PSScriptRoot 'SampleModule.build.ps1')
+Invoke-Build -Task $Task -File (Join-Path $PSScriptRoot 'youtube-adapter.build.ps1')

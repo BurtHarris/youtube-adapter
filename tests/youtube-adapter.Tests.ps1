@@ -1,9 +1,9 @@
 BeforeDiscovery {
-    $script:ModuleName = 'SampleModule'
+    $script:ModuleName = 'youtube-adapter'
 }
 
 BeforeAll {
-    $script:ModuleName = 'SampleModule'
+    $script:ModuleName = 'youtube-adapter'
     $builtModule = Join-Path $PSScriptRoot "../output/$script:ModuleName"
     $script:ModulePath = if (Test-Path $builtModule) { $builtModule } else { Join-Path $PSScriptRoot "../src/$script:ModuleName" }
     Import-Module $script:ModulePath -Force

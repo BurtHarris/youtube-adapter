@@ -3,7 +3,7 @@
     Tasks: Clean, Build, Analyze, Test, Docs, . (default: Analyze + Test)
 #>
 param(
-    [string]$ModuleName = 'SampleModule'
+    [string]$ModuleName = 'youtube-adapter'
 )
 
 $Script:SourcePath = Join-Path $BuildRoot "src/$ModuleName"
