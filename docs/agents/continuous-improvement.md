@@ -27,6 +27,20 @@ Use this order of trust for Copilot-session evidence:
 
 If evidence from lower-priority sources conflicts with higher-priority sources, prefer the higher-priority source and note the conflict.
 
+### Source priority and fallback protocol
+
+Use this compact order when collecting session-history evidence for experiments:
+
+1. Query built-in Chronicle-style outputs or local SQL session indexes first for quick aggregates and trend checks.
+2. If SQL/index coverage is sparse (for example, sessions exist but turns/refs are empty), fall back to transcript JSONL as the authoritative source.
+3. Use chat-session-resources payloads as structured supplements for large tool outputs.
+4. Use debug logs only for tertiary context or gap-filling.
+
+Operational rule:
+
+- Cross-validate summary metrics from SQL/Chronicle against transcript-derived counts before publishing conclusions.
+- In every experiment report, record which source supplied each metric and why any fallback was used.
+
 ## Scientific loop
 
 Use a compact PDCA loop aligned to coding workflow:
